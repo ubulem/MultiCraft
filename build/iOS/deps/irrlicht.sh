@@ -9,13 +9,13 @@ cd irrlicht-src/source/Irrlicht
 xcodebuild build \
 	-project Irrlicht.xcodeproj \
 	-configuration Release \
-	-scheme Irrlicht_iOS \
-	-destination generic/platform=iOS
+	-scheme Irrlicht_OSX \
+	-destination 'platform=macOS,variant=Mac Catalyst'
 cd ../..
 
 [ -d ../irrlicht ] && rm -r ../irrlicht
 mkdir -p ../irrlicht
-cp lib/iOS/libIrrlicht.a ../irrlicht/
+cp lib/OSX/libIrrlicht.a ../irrlicht/
 cp -r include ../irrlicht/include
 
 echo "Irrlicht build successful"

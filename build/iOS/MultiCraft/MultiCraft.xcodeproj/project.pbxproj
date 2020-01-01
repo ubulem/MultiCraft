@@ -39,6 +39,8 @@
 		844B495F228606B200EB60EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844B495D228606B200EB60EF /* Main.storyboard */; };
 		8465A76522A7D4500095B7CA /* libintl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8465A76422A7D4500095B7CA /* libintl.cpp */; };
 		849C4F86209656D3005EB041 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 849C4F85209656D2005EB041 /* ru.lproj */; };
+		84B5414C23B3BC0D001F48FD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B5414B23B3BC0D001F48FD /* OpenGL.framework */; platformFilter = maccatalyst; };
+		84B5414E23B3C03D001F48FD /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B5414D23B3C035001F48FD /* libcurl.tbd */; platformFilter = maccatalyst; };
 		EB4367AE23CAD13A43ADF4B1 /* libPods-MultiCraft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8758CE009FCB7E91F4C84C28 /* libPods-MultiCraft.a */; };
 		F856B5C31F55F7EE00FE9494 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F856B5C21F55F7EE00FE9494 /* bg.png */; };
 		F87DC8BA210887C700393B64 /* mapgen_v7p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F87DC8B9210887C700393B64 /* mapgen_v7p.cpp */; };
@@ -140,7 +142,6 @@
 		F8E6C6551DCA3F9900F64426 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C5D41DCA3F9900F64426 /* shader.cpp */; };
 		F8E6C6561DCA3F9900F64426 /* sky.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C5D61DCA3F9900F64426 /* sky.cpp */; };
 		F8E6C6571DCA3F9900F64426 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C5D81DCA3F9900F64426 /* socket.cpp */; };
-		F8E6C6581DCA3F9900F64426 /* sound_openal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C5DA1DCA3F9900F64426 /* sound_openal.cpp */; };
 		F8E6C6591DCA3F9900F64426 /* sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C5DC1DCA3F9900F64426 /* sound.cpp */; };
 		F8E6C65A1DCA3F9900F64426 /* staticobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C5DE1DCA3F9900F64426 /* staticobject.cpp */; };
 		F8E6C65B1DCA3F9900F64426 /* subgame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C5E01DCA3F9900F64426 /* subgame.cpp */; };
@@ -245,13 +246,13 @@
 		F8E6C7C11DCA428800F64426 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C7B21DCA428800F64426 /* string.cpp */; };
 		F8E6C7C21DCA428800F64426 /* timetaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C7B51DCA428800F64426 /* timetaker.cpp */; };
 		F8E6C7C51DCA42F300F64426 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C41DCA42F300F64426 /* QuartzCore.framework */; };
-		F8E6C7C71DCA42FA00F64426 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C61DCA42FA00F64426 /* UIKit.framework */; };
-		F8E6C7C91DCA430300F64426 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C81DCA430300F64426 /* OpenGLES.framework */; };
+		F8E6C7C71DCA42FA00F64426 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C61DCA42FA00F64426 /* UIKit.framework */; platformFilter = ios; };
+		F8E6C7C91DCA430300F64426 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C81DCA430300F64426 /* OpenGLES.framework */; platformFilter = ios; };
 		F8E6C7CB1DCA430B00F64426 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7CA1DCA430B00F64426 /* OpenAL.framework */; };
 		F8E6C7CD1DCA431B00F64426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7CC1DCA431B00F64426 /* Foundation.framework */; };
 		F8E6C7D11DCA433E00F64426 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7D01DCA433E00F64426 /* libiconv.tbd */; };
 		F8E6C7D51DCA476800F64426 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7D41DCA476800F64426 /* libIrrlicht.a */; };
-		F8E6C7D71DCA477600F64426 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7D61DCA477600F64426 /* libfreetype.a */; };
+		F8E6C7D71DCA477600F64426 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7D61DCA477600F64426 /* libfreetype.a */; platformFilter = ios; };
 		F8E6C7E11DCA4EB300F64426 /* assets.zip in Resources */ = {isa = PBXBuildFile; fileRef = F8E6C7E01DCA4EB300F64426 /* assets.zip */; };
 		F8E6C7E31DCA511700F64426 /* worlds.zip in Resources */ = {isa = PBXBuildFile; fileRef = F8E6C7E21DCA511700F64426 /* worlds.zip */; };
 /* End PBXBuildFile section */
@@ -318,8 +319,10 @@
 		8465A76322A7D4500095B7CA /* Util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Util.hpp; path = ../../../../lib/intl/Util.hpp; sourceTree = "<group>"; };
 		8465A76422A7D4500095B7CA /* libintl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libintl.cpp; path = ../../../../lib/intl/libintl.cpp; sourceTree = "<group>"; };
 		849C4F85209656D2005EB041 /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ru.lproj; sourceTree = "<group>"; };
+		84B5414A23B3BBEF001F48FD /* MultiCraft.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MultiCraft.entitlements; sourceTree = "<group>"; };
+		84B5414B23B3BC0D001F48FD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
+		84B5414D23B3C035001F48FD /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libcurl.tbd; sourceTree = DEVELOPER_DIR; };
 		8758CE009FCB7E91F4C84C28 /* libPods-MultiCraft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MultiCraft.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F85119A61F4476FC00BFA9AF /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../Pods/libCurlPod/lib/libcurl.a; sourceTree = "<group>"; };
 		F856B5C21F55F7EE00FE9494 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../../../textures/base/bg.png; sourceTree = "<group>"; };
 		F87DC8B8210887C600393B64 /* mapgen_v7p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mapgen_v7p.h; path = ../../../../src/mapgen_v7p.h; sourceTree = "<group>"; };
 		F87DC8B9210887C700393B64 /* mapgen_v7p.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mapgen_v7p.cpp; path = ../../../../src/mapgen_v7p.cpp; sourceTree = "<group>"; };
@@ -545,8 +548,6 @@
 		F8E6C5D71DCA3F9900F64426 /* sky.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sky.h; path = ../../../../src/sky.h; sourceTree = "<group>"; };
 		F8E6C5D81DCA3F9900F64426 /* socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = socket.cpp; path = ../../../../src/socket.cpp; sourceTree = "<group>"; };
 		F8E6C5D91DCA3F9900F64426 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = socket.h; path = ../../../../src/socket.h; sourceTree = "<group>"; };
-		F8E6C5DA1DCA3F9900F64426 /* sound_openal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sound_openal.cpp; path = ../../../../src/sound_openal.cpp; sourceTree = "<group>"; };
-		F8E6C5DB1DCA3F9900F64426 /* sound_openal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sound_openal.h; path = ../../../../src/sound_openal.h; sourceTree = "<group>"; };
 		F8E6C5DC1DCA3F9900F64426 /* sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sound.cpp; path = ../../../../src/sound.cpp; sourceTree = "<group>"; };
 		F8E6C5DD1DCA3F9900F64426 /* sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sound.h; path = ../../../../src/sound.h; sourceTree = "<group>"; };
 		F8E6C5DE1DCA3F9900F64426 /* staticobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = staticobject.cpp; path = ../../../../src/staticobject.cpp; sourceTree = "<group>"; };
@@ -783,12 +784,14 @@
 				F8E6C7C51DCA42F300F64426 /* QuartzCore.framework in Frameworks */,
 				F8E6C7C71DCA42FA00F64426 /* UIKit.framework in Frameworks */,
 				F8E6C7C91DCA430300F64426 /* OpenGLES.framework in Frameworks */,
+				84B5414C23B3BC0D001F48FD /* OpenGL.framework in Frameworks */,
 				F8E6C7CB1DCA430B00F64426 /* OpenAL.framework in Frameworks */,
 				F8E6C7CD1DCA431B00F64426 /* Foundation.framework in Frameworks */,
 				F8E6C7D11DCA433E00F64426 /* libiconv.tbd in Frameworks */,
 				F8E6C7D51DCA476800F64426 /* libIrrlicht.a in Frameworks */,
 				F8E6C7D71DCA477600F64426 /* libfreetype.a in Frameworks */,
 				EB4367AE23CAD13A43ADF4B1 /* libPods-MultiCraft.a in Frameworks */,
+				84B5414E23B3C03D001F48FD /* libcurl.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,6 +849,7 @@
 		F8E6C4DB1DCA3B7900F64426 /* MultiCraft */ = {
 			isa = PBXGroup;
 			children = (
+				84B5414A23B3BBEF001F48FD /* MultiCraft.entitlements */,
 				849C4F85209656D2005EB041 /* ru.lproj */,
 				F8E6C4E81DCA3B7900F64426 /* Assets.xcassets */,
 				844B495D228606B200EB60EF /* Main.storyboard */,
@@ -1120,8 +1124,6 @@
 				F8E6C5D71DCA3F9900F64426 /* sky.h */,
 				F8E6C5D81DCA3F9900F64426 /* socket.cpp */,
 				F8E6C5D91DCA3F9900F64426 /* socket.h */,
-				F8E6C5DA1DCA3F9900F64426 /* sound_openal.cpp */,
-				F8E6C5DB1DCA3F9900F64426 /* sound_openal.h */,
 				F8E6C5DC1DCA3F9900F64426 /* sound.cpp */,
 				F8E6C5DD1DCA3F9900F64426 /* sound.h */,
 				F8E6C5DE1DCA3F9900F64426 /* staticobject.cpp */,
@@ -1452,7 +1454,8 @@
 		F8E6C7C31DCA42F300F64426 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F85119A61F4476FC00BFA9AF /* libcurl.a */,
+				84B5414D23B3C035001F48FD /* libcurl.tbd */,
+				84B5414B23B3BC0D001F48FD /* OpenGL.framework */,
 				F8E6C7DE1DCA47AF00F64426 /* libvorbisfile.a */,
 				F8E6C7DC1DCA47A300F64426 /* libvorbis.a */,
 				F8E6C7DA1DCA479200F64426 /* libogg.a */,
@@ -1481,7 +1484,6 @@
 				F8E6C4D51DCA3B7900F64426 /* Sources */,
 				F8E6C4D61DCA3B7900F64426 /* Frameworks */,
 				F8E6C4D71DCA3B7900F64426 /* Resources */,
-				E156912616D2E9233FC1C9F4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1565,23 +1567,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E156912616D2E9233FC1C9F4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MultiCraft/Pods-MultiCraft-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MultiCraft/Pods-MultiCraft-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MultiCraft/Pods-MultiCraft-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1633,7 +1618,6 @@
 				F8E6C7191DCA41EF00F64426 /* s_mainmenu.cpp in Sources */,
 				F8E6C6331DCA3F9900F64426 /* mapgen_v6.cpp in Sources */,
 				F8E6C6681DCA3FE200F64426 /* xCGUITTFont.cpp in Sources */,
-				F8E6C6581DCA3F9900F64426 /* sound_openal.cpp in Sources */,
 				F8E6C6401DCA3F9900F64426 /* nameidmapping.cpp in Sources */,
 				F8E6C6571DCA3F9900F64426 /* socket.cpp in Sources */,
 				4B35A9B01EEDD15500274961 /* clientenvironment.cpp in Sources */,
@@ -1901,19 +1885,21 @@
 			baseConfigurationReference = 32528F14AAB9EA0E9CAB8526 /* Pods-MultiCraft.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MultiCraft/MultiCraft.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CURRENT_PROJECT_VERSION = 79;
-				DEVELOPMENT_TEAM = R3RLJ9TW52;
+				DEVELOPMENT_TEAM = 7D4JSRH524;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					__IOS__,
 					"RUN_IN_PLACE=0",
 					"USE_GETTEXT=1",
-					"USE_CURL=1",
-					"USE_SOUND=1",
-					"USE_FREETYPE=1",
+					"USE_CURL=0",
+					"USE_SOUND=0",
+					"USE_FREETYPE=0",
 					"USE_CURSES=0",
-					"USE_LEVELDB=1",
+					"USE_LEVELDB=0",
 					"USE_LUAJIT=0",
 					"USE_SPATIAL=0",
 					"USE_SYSTEM_GMP=0",
@@ -1957,8 +1943,10 @@
 					"-L${SRCROOT}/../deps/freetype/lib",
 					"-Wl,-dead_strip",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mobi.MultiCraft;
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.MultiCraft2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Debug;
 		};
@@ -1967,20 +1955,22 @@
 			baseConfigurationReference = 1E76DCA01B51A98F0CA4C480 /* Pods-MultiCraft.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MultiCraft/MultiCraft.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CURRENT_PROJECT_VERSION = 79;
-				DEVELOPMENT_TEAM = R3RLJ9TW52;
+				DEVELOPMENT_TEAM = 7D4JSRH524;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"NDEBUG=1",
 					__IOS__,
 					"RUN_IN_PLACE=0",
 					"USE_GETTEXT=1",
-					"USE_CURL=1",
-					"USE_SOUND=1",
-					"USE_FREETYPE=1",
+					"USE_CURL=0",
+					"USE_SOUND=0",
+					"USE_FREETYPE=0",
 					"USE_CURSES=0",
-					"USE_LEVELDB=1",
+					"USE_LEVELDB=0",
 					"USE_LUAJIT=0",
 					"USE_SPATIAL=0",
 					"USE_SYSTEM_GMP=0",
@@ -2024,8 +2014,10 @@
 					"-L${SRCROOT}/../deps/freetype/lib",
 					"-Wl,-dead_strip",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mobi.MultiCraft;
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.MultiCraft2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Release;
 		};

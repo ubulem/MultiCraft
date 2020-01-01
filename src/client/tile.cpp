@@ -40,10 +40,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #ifdef __ANDROID__
 #include <GLES/gl.h>
-#elif defined(__IOS__)
+#elif defined(__IOS__) && !TARGET_OS_MACCATALYST
 #include <OpenGLES/ES1/gl.h>
 #endif
-
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/gl.h>
 /*
 	A cache from texture name to texture path
 */
@@ -632,7 +633,7 @@ u32 TextureSource::generateTexture(const std::string &name)
 	video::ITexture *tex = NULL;
 
 	if (img != NULL) {
-#if defined(__ANDROID__) || defined(__IOS__)
+#if (defined(__ANDROID__) || defined(__IOS__)) && !TARGET_OS_MACCATALYST
 		img = Align2Npot2(img, driver);
 #endif
 		// Create texture from resulting image
@@ -790,7 +791,7 @@ void TextureSource::rebuildImagesAndTextures()
 	for (u32 i=0; i<m_textureinfo_cache.size(); i++){
 		TextureInfo *ti = &m_textureinfo_cache[i];
 		video::IImage *img = generateImage(ti->name);
-#if defined(__ANDROID__) || defined(__IOS__)
+#if (defined(__ANDROID__) || defined(__IOS__)) && !TARGET_OS_MACCATALYST
 		img = Align2Npot2(img, driver);
 #endif
 		// Create texture from resulting image
@@ -994,7 +995,7 @@ video::IImage* TextureSource::generateImage(const std::string &name)
 	return baseimg;
 }
 
-#if defined(__ANDROID__) || defined(__IOS__)
+#if (defined(__ANDROID__) || defined(__IOS__)) && !TARGET_OS_MACCATALYST
 /**
  * Check and align image to npot2 if required by hardware
  * @param image image to check for npot2 alignment
@@ -1099,7 +1100,7 @@ bool TextureSource::generateImagePart(std::string part_of_name,
 	if (part_of_name.size() == 0 || part_of_name[0] != '[')
 	{
 		video::IImage *image = m_sourcecache.getOrLoad(part_of_name, m_device);
-#if defined(__ANDROID__) || defined(__IOS__)
+#if (defined(__ANDROID__) || defined(__IOS__)) && !TARGET_OS_MACCATALYST
 		image = Align2Npot2(image, driver);
 #endif
 		if (image == NULL) {

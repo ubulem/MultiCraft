@@ -112,7 +112,7 @@ FileLogOutput file_log_output;
 
 static OptionList allowed_options;
 
-#ifdef __IOS__
+#if defined(__IOS__) && !TARGET_OS_MACCATALYST
 int real_main(int argc, char *argv[])
 #else
 int main(int argc, char *argv[])

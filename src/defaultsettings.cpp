@@ -386,12 +386,12 @@ void set_default_settings(Settings *settings) {
 
 	// Mobile Platform
 #if defined(__ANDROID__) || defined(__IOS__)
-	settings->setDefault("screenW", "0");
-	settings->setDefault("screenH", "0");
+//	settings->setDefault("screenW", "0");
+//	settings->setDefault("screenH", "0");
 	settings->setDefault("fullscreen", "true");
 	settings->setDefault("fps_max", "35");
 	settings->setDefault("enable_shaders", "false");
-	settings->setDefault("video_driver", "ogles1");
+//	settings->setDefault("video_driver", "ogles1");
 	settings->setDefault("touchtarget", "true");
 	settings->setDefault("touchscreen_threshold", "20");
 	settings->setDefault("doubletap_jump", "true");
@@ -561,7 +561,7 @@ void set_default_settings(Settings *settings) {
 	}
 #endif // iOS
 
-	settings->setDefault("language", lang);
+//	settings->setDefault("language", lang);
 #endif
 }
 

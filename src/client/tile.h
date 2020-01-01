@@ -149,7 +149,7 @@ public:
 
 IWritableTextureSource* createTextureSource(IrrlichtDevice *device);
 
-#if defined(__ANDROID__) || defined(__IOS__)
+#if (defined(__ANDROID__) || defined(__IOS__)) && !TARGET_OS_MACCATALYST
 video::IImage * Align2Npot2(video::IImage * image, video::IVideoDriver* driver);
 #endif
 
@@ -329,7 +329,7 @@ struct TileSpec
 		for (int layer = 0; layer < MAX_TILE_LAYERS; layer++)
 			layers[layer] = TileLayer();
 	}
-	
+
 	/*!
 	 * Returns true if this tile can be merged with the other tile.
 	 */

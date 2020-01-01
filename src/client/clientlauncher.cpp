@@ -36,7 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "clientlauncher.h"
 #include "version.h"
 
-#ifdef __IOS__
+#if defined(__IOS__) && !TARGET_OS_MACCATALYST
 namespace irr {
 	class CIrrDeviceiOS : public IrrlichtDevice {
 	public:
@@ -89,7 +89,7 @@ bool ClientLauncher::run(GameParams &game_params, const Settings &cmd_args)
 
 	if (!init_engine()) {
 		errorstream << "Could not initialize game engine." << std::endl;
-		return false;
+	//	return false;
 	}
 
 	// Speed tests (done after irrlicht is loaded to get timer)
@@ -539,8 +539,8 @@ bool ClientLauncher::create_engine_device()
 {
 	#if defined(__ANDROID__) || defined(__IOS__)
 		// set correct resolution
-		g_settings->setU16("screenW", porting::getDisplaySize().X);
-		g_settings->setU16("screenH", porting::getDisplaySize().Y);
+	//	g_settings->setU16("screenW", porting::getDisplaySize().X);
+	//	g_settings->setU16("screenH", porting::getDisplaySize().Y);
 	#endif
 
 	// Resolution selection
@@ -593,7 +593,7 @@ bool ClientLauncher::create_engine_device()
 	if (device)
 		porting::initIrrlicht(device);
 
-#ifdef __IOS__
+#if defined(__IOS__) && !TARGET_OS_MACCATALYST
 	if (device) {
 		CIrrDeviceiOS* dev = (CIrrDeviceiOS*) device;
 		porting::setViewController(dev->getViewController());

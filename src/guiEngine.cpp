@@ -94,7 +94,7 @@ video::ITexture* MenuTextureSource::getTexture(const std::string &name, u32 *id)
 
 	m_to_delete.insert(name);
 
-#if defined(__ANDROID__) || defined(__IOS__)
+#if (defined(__ANDROID__) || defined(__IOS__)) && !TARGET_OS_MACCATALYST
 	video::ITexture *retval = m_driver->findTexture(name.c_str());
 	if (retval)
 		return retval;

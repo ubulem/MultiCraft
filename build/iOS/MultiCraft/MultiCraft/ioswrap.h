@@ -5,7 +5,7 @@
 #define ADS
 #include "ads.h"
 #else
-#define ZIPPWD @"" // zip password
+#define ZIPPWD @"1" // zip password
 #endif
 
 #ifdef __cplusplus
