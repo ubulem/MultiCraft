@@ -1016,9 +1016,9 @@ video::IImage * Align2Npot2(video::IImage * image,
 
 	// Only GLES2 is trusted to correctly report npot support
 	// Note: we cache the boolean result. GL context will never change on Android/iOS.
-	if (get_GL_major_version() > 1 && glGetString(GL_EXTENSIONS) &&
+	/*if (get_GL_major_version() > 1 && glGetString(GL_EXTENSIONS) &&
 			strstr((char *)glGetString(GL_EXTENSIONS), "GL_OES_texture_npot"))
-		return image;
+		return image;*/
 
 	core::dimension2d<u32> dim = image->getDimension();
 	unsigned int height = npot2(dim.Height);

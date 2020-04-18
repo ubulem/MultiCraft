@@ -40,6 +40,9 @@
 		8465A76522A7D4500095B7CA /* libintl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8465A76422A7D4500095B7CA /* libintl.cpp */; };
 		849C4F86209656D3005EB041 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 849C4F85209656D2005EB041 /* ru.lproj */; };
 		84AA10F323D20C070056F125 /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AA10F223D20BE50056F125 /* libluajit.a */; };
+		84F9A011244364DF00E5496D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F9A010244364DF00E5496D /* Metal.framework */; };
+		84F9A01C2444B4EA00E5496D /* MoltenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F9A01B2444B4EA00E5496D /* MoltenGL.framework */; };
+		84FE40E224439C2F008E29DB /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FE40E124439C2F008E29DB /* libcurl.a */; };
 		EB4367AE23CAD13A43ADF4B1 /* libPods-MultiCraft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8758CE009FCB7E91F4C84C28 /* libPods-MultiCraft.a */; };
 		F856B5C31F55F7EE00FE9494 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F856B5C21F55F7EE00FE9494 /* bg.png */; };
 		F87DC8BA210887C700393B64 /* mapgen_v7p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F87DC8B9210887C700393B64 /* mapgen_v7p.cpp */; };
@@ -217,7 +220,6 @@
 		F8E6C7C21DCA428800F64426 /* timetaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E6C7B51DCA428800F64426 /* timetaker.cpp */; };
 		F8E6C7C51DCA42F300F64426 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C41DCA42F300F64426 /* QuartzCore.framework */; };
 		F8E6C7C71DCA42FA00F64426 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C61DCA42FA00F64426 /* UIKit.framework */; };
-		F8E6C7C91DCA430300F64426 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7C81DCA430300F64426 /* OpenGLES.framework */; };
 		F8E6C7CB1DCA430B00F64426 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7CA1DCA430B00F64426 /* OpenAL.framework */; };
 		F8E6C7CD1DCA431B00F64426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7CC1DCA431B00F64426 /* Foundation.framework */; };
 		F8E6C7D11DCA433E00F64426 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7D01DCA433E00F64426 /* libiconv.tbd */; };
@@ -290,6 +292,9 @@
 		8465A76422A7D4500095B7CA /* libintl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libintl.cpp; path = ../../../../lib/intl/libintl.cpp; sourceTree = "<group>"; };
 		849C4F85209656D2005EB041 /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ru.lproj; sourceTree = "<group>"; };
 		84AA10F223D20BE50056F125 /* libluajit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluajit.a; path = ../Pods/LuaJITPod/lib/libluajit.a; sourceTree = "<group>"; };
+		84F9A010244364DF00E5496D /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		84F9A01B2444B4EA00E5496D /* MoltenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MoltenGL.framework; path = ../deps/MoltenGL/iOS/framework/MoltenGL.framework; sourceTree = "<group>"; };
+		84FE40E124439C2F008E29DB /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../deps/libcurl/lib/libcurl.a; sourceTree = "<group>"; };
 		8758CE009FCB7E91F4C84C28 /* libPods-MultiCraft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MultiCraft.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85119A61F4476FC00BFA9AF /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../Pods/libCurlPod/lib/libcurl.a; sourceTree = "<group>"; };
 		F856B5C21F55F7EE00FE9494 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../../../textures/base/bg.png; sourceTree = "<group>"; };
@@ -680,7 +685,6 @@
 		F8E6C7B61DCA428800F64426 /* timetaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timetaker.h; path = ../../../../src/util/timetaker.h; sourceTree = "<group>"; };
 		F8E6C7C41DCA42F300F64426 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F8E6C7C61DCA42FA00F64426 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F8E6C7C81DCA430300F64426 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F8E6C7CA1DCA430B00F64426 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F8E6C7CC1DCA431B00F64426 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F8E6C7CE1DCA432200F64426 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -702,7 +706,8 @@
 				84AA10F323D20C070056F125 /* libluajit.a in Frameworks */,
 				F8E6C7C51DCA42F300F64426 /* QuartzCore.framework in Frameworks */,
 				F8E6C7C71DCA42FA00F64426 /* UIKit.framework in Frameworks */,
-				F8E6C7C91DCA430300F64426 /* OpenGLES.framework in Frameworks */,
+				84F9A011244364DF00E5496D /* Metal.framework in Frameworks */,
+				84F9A01C2444B4EA00E5496D /* MoltenGL.framework in Frameworks */,
 				F8E6C7CB1DCA430B00F64426 /* OpenAL.framework in Frameworks */,
 				F8E6C7CD1DCA431B00F64426 /* Foundation.framework in Frameworks */,
 				F8E6C7D11DCA433E00F64426 /* libiconv.tbd in Frameworks */,
@@ -1322,7 +1327,8 @@
 				F8E6C7CE1DCA432200F64426 /* CoreMotion.framework */,
 				F8E6C7CC1DCA431B00F64426 /* Foundation.framework */,
 				F8E6C7CA1DCA430B00F64426 /* OpenAL.framework */,
-				F8E6C7C81DCA430300F64426 /* OpenGLES.framework */,
+				84F9A010244364DF00E5496D /* Metal.framework */,
+				84F9A01B2444B4EA00E5496D /* MoltenGL.framework */,
 				F8E6C7C61DCA42FA00F64426 /* UIKit.framework */,
 				F8E6C7C41DCA42F300F64426 /* QuartzCore.framework */,
 				8758CE009FCB7E91F4C84C28 /* libPods-MultiCraft.a */,
@@ -1688,6 +1694,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_INCREMENTAL_DISTILL = YES;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../deps/MoltenGL/iOS/framework";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -1698,6 +1705,7 @@
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../deps/MoltenGL/RedirectHeaders/include/**";
 			};
 			name = Debug;
 		};
@@ -1713,6 +1721,7 @@
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_INCREMENTAL_DISTILL = YES;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../deps/MoltenGL/iOS/framework";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -1722,6 +1731,7 @@
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../deps/MoltenGL/RedirectHeaders/include/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
