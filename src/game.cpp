@@ -2570,14 +2570,14 @@ void Game::processKeyInput()
 		float new_volume = rangelim(g_settings->getFloat("sound_volume") + 0.1f, 0.0f, 1.0f);
 		char buf[100];
 		g_settings->setFloat("sound_volume", new_volume);
-		snprintf(buf, sizeof(buf), gettext("Volume changed to %d%%"), myround(new_volume * 100));
+		//snprintf(buf, sizeof(buf), gettext("Volume changed to %d%%"), myround(new_volume * 100));
 		m_statustext = narrow_to_wide(buf);
 		runData.statustext_time = 0;
 	} else if (wasKeyDown(KeyType::DEC_VOLUME)) {
 		float new_volume = rangelim(g_settings->getFloat("sound_volume") - 0.1f, 0.0f, 1.0f);
 		char buf[100];
 		g_settings->setFloat("sound_volume", new_volume);
-		snprintf(buf, sizeof(buf), gettext("Volume changed to %d%%"), myround(new_volume * 100));
+		//snprintf(buf, sizeof(buf), gettext("Volume changed to %d%%"), myround(new_volume * 100));
 		m_statustext = narrow_to_wide(buf);
 		runData.statustext_time = 0;
 	} else if (wasKeyDown(KeyType::CINEMATIC)) {

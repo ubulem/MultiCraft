@@ -254,7 +254,7 @@ static void set_allowed_options(OptionList *allowed_options)
 {
 	allowed_options->clear();
 
-	allowed_options->insert(std::make_pair("help", ValueSpec(VALUETYPE_FLAG,
+/*	allowed_options->insert(std::make_pair("help", ValueSpec(VALUETYPE_FLAG,
 			_("Show allowed options"))));
 	allowed_options->insert(std::make_pair("version", ValueSpec(VALUETYPE_FLAG,
 			_("Show version information"))));
@@ -307,7 +307,7 @@ static void set_allowed_options(OptionList *allowed_options)
 			_("Disable main menu"))));
 	allowed_options->insert(std::make_pair("console", ValueSpec(VALUETYPE_FLAG,
 		_("Starts with the console (Windows only)"))));
-#endif
+#endif*/
 
 }
 

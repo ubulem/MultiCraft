@@ -17,13 +17,18 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
+#pragma once
+
 #ifndef GETTEXT_HEADER
 #define GETTEXT_HEADER
 
 #include "config.h" // for USE_GETTEXT
 
 #if USE_GETTEXT
-	#include <libintl.h>
+//	#include <libintl.h>
+//	#include <tinygettext/po_parser.hpp>
+	#include <tinygettext/tinygettext.hpp>
+
 #else
 	// In certain environments, some standard headers like <iomanip>
 	// and <locale> include libintl.h. If libintl.h is included after
@@ -37,6 +42,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 	#define gettext(String) String
 #endif
+
+tinygettext::DictionaryManager dictionary_manager;
+
+static inline std::string gettext(const std::string &message)
+{
+	return dictionary_manager.get_dictionary().translate(message);
+}
 
 #define _(String) gettext(String)
 #define gettext_noop(String) (String)
@@ -52,7 +64,7 @@ extern wchar_t *utf8_to_wide_c(const char *str);
 inline const wchar_t *wgettext(const char *str)
 {
 	// We must check here that is not an empty string to avoid trying to translate it
-	return str[0] ? utf8_to_wide_c(gettext(str)) : utf8_to_wide_c("");
+	return /*str[0] ? utf8_to_wide_c(gettext(str)) :*/ utf8_to_wide_c("");
 }
 
 inline std::string strgettext(const std::string &text)

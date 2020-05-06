@@ -66,16 +66,17 @@ LOCAL_C_INCLUDES := \
 	../../../src/cguittfont                        \
 	../../../src/script                            \
 	../../../lib/gmp                               \
-	../../../lib/intl                              \
 	../../../lib/jsoncpp                           \
 	deps/Android/Curl/include                      \
 	deps/Android/Freetype/include                  \
 	deps/Android/Irrlicht/include                  \
 	deps/Android/LevelDB/include                   \
-	deps/Android/ndk_iconv                         \
+	deps/Android/libiconv/include                  \
+	deps/Android/libiconv/libcharset/include       \
 	deps/Android/LuaJIT/src                        \
 	deps/Android/OpenAL-Soft/include               \
-	deps/Android/Vorbis/include
+	deps/Android/Vorbis/include \
+	deps/Android/tinygettext/include
 
 LOCAL_SRC_FILES := \
 	../../../src/ban.cpp                           \
@@ -220,8 +221,13 @@ LOCAL_SRC_FILES += $(wildcard ../../../src/util/*.cpp)
 # GMP
 LOCAL_SRC_FILES += ../../../lib/gmp/mini-gmp.c
 
-# libIntl
-LOCAL_SRC_FILES += ../../../lib/intl/libintl.cpp
+# libiconv
+LOCAL_SRC_FILES += \
+	deps/Android/libiconv/lib/iconv.c              \
+	deps/Android/libiconv/libcharset/lib/localcharset.c
+
+# tinygettext
+LOCAL_SRC_FILES += $(wildcard deps/Android/tinygettext/src/*.cpp)
 
 # JSONCPP
 LOCAL_SRC_FILES += ../../../lib/jsoncpp/jsoncpp.cpp
