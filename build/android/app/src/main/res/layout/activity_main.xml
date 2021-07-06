@@ -15,16 +15,6 @@
 		android:progressDrawable="@drawable/custom_progress_bar"
 		android:visibility="gone" />
 
-	<!-- It works, yes. But it works fucking laggy... -->
-	<!-- <com.google.android.material.progressindicator.CircularProgressIndicator
-		android:id="@+id/PB_Indet"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:indeterminate="true"
-		app:indicatorSize="80dp"
-		app:trackThickness="8dp" /> -->
-
 	<ProgressBar
 		android:id="@+id/PB_Indet"
 		style="@style/Widget.AppCompat.ProgressBar"

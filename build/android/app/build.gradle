@@ -2,76 +2,76 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.3'
-    ndkVersion '22.1.7171670'
-    defaultConfig {
-        applicationId 'com.multicraft.game'
-        minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 150
-        versionName "1.15.6"
-        multiDexEnabled true
-    }
+	compileSdkVersion 30
+	buildToolsVersion '30.0.3'
+	ndkVersion '22.1.7171670'
+	defaultConfig {
+		applicationId 'com.multicraft.game'
+		minSdkVersion 19
+		targetSdkVersion 30
+		versionCode 150
+		versionName "1.15.6"
+		multiDexEnabled true
+	}
 
-    // load properties
-    Properties props = new Properties()
-    def propfile = file('../local.properties')
-    if (propfile.exists())
-        props.load(new FileInputStream(propfile))
+	// load properties
+	Properties props = new Properties()
+	def propfile = file('../local.properties')
+	if (propfile.exists())
+		props.load(new FileInputStream(propfile))
 
-    if (props.getProperty('keystore') != null) {
-        signingConfigs {
-            release {
-                storeFile file(props['keystore'])
-                storePassword props['keystore.password']
-                keyAlias props['key']
-                keyPassword props['key.password']
-            }
-        }
+	if (props.getProperty('keystore') != null) {
+		signingConfigs {
+			release {
+				storeFile file(props['keystore'])
+				storePassword props['keystore.password']
+				keyAlias props['key']
+				keyPassword props['key.password']
+			}
+		}
 
-        buildTypes {
-            release {
-                shrinkResources true
-                minifyEnabled false
-                signingConfig signingConfigs.release
-            }
-            debug {
-                debuggable true
-                minifyEnabled false
-            }
-        }
-    }
+		buildTypes {
+			release {
+				shrinkResources true
+				minifyEnabled false
+				signingConfig signingConfigs.release
+			}
+			debug {
+				debuggable true
+				minifyEnabled false
+			}
+		}
+	}
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
 
-    // for multiple APKs
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'armeabi-v7a', 'arm64-v8a'
-        }
-    }
+	// for multiple APKs
+	splits {
+		abi {
+			enable true
+			reset()
+			include 'armeabi-v7a', 'arm64-v8a'
+		}
+	}
 }
 
 dependencies {
-    /* MultiCraft Native */
-    implementation project(':native')
+	/* MultiCraft Native */
+	implementation project(':native')
 
-    /* Third-party libraries */
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'androidx.appcompat:appcompat-resources:1.3.0'
-    implementation("com.google.android.material:material:1.4.0")
-    implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'net.lingala.zip4j:zip4j:2.9.0'
+	/* Third-party libraries */
+	implementation 'androidx.appcompat:appcompat:1.3.0'
+	implementation 'androidx.appcompat:appcompat-resources:1.3.0'
+	implementation("com.google.android.material:material:1.4.0")
+	implementation 'androidx.multidex:multidex:2.0.1'
+	implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
+	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+	implementation 'net.lingala.zip4j:zip4j:2.9.0'
 
-    /* Analytics libraries */
-    //noinspection GradleDynamicVersion
-    //implementation 'com.bugsnag:bugsnag-android-core:5.+'
+	/* Analytics libraries */
+	//noinspection GradleDynamicVersion
+	//implementation 'com.bugsnag:bugsnag-android-core:5.+'
 }
