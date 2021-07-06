@@ -2,14 +2,17 @@
 MultiCraft
 Copyright (C) 2014-2021 MoNTE48, Maksim Gamarnik <MoNTE48@mail.ua>
 Copyright (C) 2014-2021 ubulem,  Bektur Mambetov <berkut87@gmail.com>
+
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation; either version 3.0 of the License, or
 (at your option) any later version.
+
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
+
 You should have received a copy of the GNU Lesser General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -28,6 +31,8 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +45,7 @@ import androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_B
 import com.multicraft.game.MainActivity
 import com.multicraft.game.R
 import com.multicraft.game.helpers.ApiLevelHelper.isKitKat
+import com.multicraft.game.helpers.ApiLevelHelper.isMarshmallow
 import com.multicraft.game.helpers.ApiLevelHelper.isOreo
 import com.multicraft.game.helpers.Constants.FILES
 import com.multicraft.game.helpers.PreferencesHelper.TAG_SHORTCUT_EXIST
@@ -148,5 +154,18 @@ object Utilities {
 	@JvmStatic
 	fun File.copyInputStreamToFile(inputStream: InputStream) {
 		this.outputStream().use { fileOut -> inputStream.copyTo(fileOut) }
+	}
+
+	@JvmStatic
+	fun isConnected(context: Context): Boolean {
+		val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+		if (isMarshmallow) {
+			val activeNetwork = cm.activeNetwork ?: return false
+			val capabilities = cm.getNetworkCapabilities(activeNetwork) ?: return false
+			return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+		} else @Suppress("DEPRECATION") {
+			val activeNetworkInfo = cm.activeNetworkInfo ?: return false
+			return activeNetworkInfo.isConnected
+		}
 	}
 }

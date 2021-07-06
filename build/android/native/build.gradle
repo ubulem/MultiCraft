@@ -2,88 +2,88 @@ apply plugin: 'com.android.library'
 apply plugin: 'de.undercouch.download'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.3'
-    ndkVersion '22.1.7171670'
-    defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
-        externalNativeBuild {
-            ndkBuild {
-                arguments '-j' + Runtime.getRuntime().availableProcessors(),
-                        "--output-sync=none"
-            }
-        }
-    }
+	compileSdkVersion 30
+	buildToolsVersion '30.0.3'
+	ndkVersion '22.1.7171670'
+	defaultConfig {
+		minSdkVersion 19
+		targetSdkVersion 30
+		externalNativeBuild {
+			ndkBuild {
+				arguments '-j' + Runtime.getRuntime().availableProcessors(),
+						"--output-sync=none"
+			}
+		}
+	}
 
-    externalNativeBuild {
-        ndkBuild {
-            path file('jni/Android.mk')
-        }
-    }
+	externalNativeBuild {
+		ndkBuild {
+			path file('jni/Android.mk')
+		}
+	}
 
-    // supported architectures
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'armeabi-v7a', 'arm64-v8a'//, 'x86'
-        }
-    }
+	// supported architectures
+	splits {
+		abi {
+			enable true
+			reset()
+			include 'armeabi-v7a', 'arm64-v8a'//, 'x86'
+		}
+	}
 
-    buildTypes {
-        release {
-            externalNativeBuild {
-                ndkBuild {
-                    arguments 'NDEBUG=1'
-                }
-            }
-        }
-    }
+	buildTypes {
+		release {
+			externalNativeBuild {
+				ndkBuild {
+					arguments 'NDEBUG=1'
+				}
+			}
+		}
+	}
 }
 
 // get precompiled deps
 task downloadDeps(type: Download) {
-    src 'https://github.com/MultiCraft/deps/archive/master.zip'
-    dest new File(buildDir, 'deps.zip')
-    overwrite false
+	src 'https://github.com/MultiCraft/deps/archive/master.zip'
+	dest new File(buildDir, 'deps.zip')
+	overwrite false
 }
 
 task getDeps(dependsOn: downloadDeps, type: Copy) {
-    def deps = file('deps')
-    def f = file("$buildDir/deps-master")
+	def deps = file('deps')
+	def f = file("$buildDir/deps-master")
 
-    if (!f.exists()) {
-        from zipTree(downloadDeps.dest)
-        into buildDir
-    }
+	if (!f.exists()) {
+		from zipTree(downloadDeps.dest)
+		into buildDir
+	}
 
-    doLast {
-        file(f).renameTo(file(deps))
-    }
+	doLast {
+		file(f).renameTo(file(deps))
+	}
 }
 
 // get libiconv
 task downloadIconv(dependsOn: getDeps, type: Download) {
-    src 'https://github.com/MoNTE48/ndk_iconv/archive/mc.zip'
-    dest new File(buildDir, 'iconv.zip')
-    overwrite false
+	src 'https://github.com/MoNTE48/ndk_iconv/archive/mc.zip'
+	dest new File(buildDir, 'iconv.zip')
+	overwrite false
 }
 
 task getIconv(dependsOn: downloadIconv, type: Copy) {
-    def iconv = file('deps/Android/ndk_iconv')
-    def f = file("$buildDir/ndk_iconv-mc")
+	def iconv = file('deps/Android/ndk_iconv')
+	def f = file("$buildDir/ndk_iconv-mc")
 
-    if (!iconv.exists() && !f.exists()) {
-        from zipTree(downloadIconv.dest)
-        into buildDir
-    }
+	if (!iconv.exists() && !f.exists()) {
+		from zipTree(downloadIconv.dest)
+		into buildDir
+	}
 
-    doLast {
-        if (!iconv.exists()) {
-            file(f).renameTo(file(iconv))
-        }
-    }
+	doLast {
+		if (!iconv.exists()) {
+			file(f).renameTo(file(iconv))
+		}
+	}
 }
 
 preBuild.dependsOn getDeps

@@ -16,4 +16,12 @@
 	<string name="input_text">Text Input</string>
 	<string name="input_password">Password</string>
 	<string name="done">Done</string>
+
+	<!-- no connection dialog -->
+	<string name="conn_title">No Internet Connection!</string>
+	<string name="conn_message">MultiCraft requires an Internet connection to use all game features.\nOtherwise, you will not get Updates and Multiplayer mode will be not available!</string>
+	<string name="conn_wifi" translatable="false">Wi-Fi</string>
+	<string name="conn_mobile">Mobile Data</string>
+	<string name="ignore">Ignore</string>
+
 </resources>

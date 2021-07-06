@@ -13,4 +13,11 @@
 	<string name="input_text">Введите Текст</string>
 	<string name="input_password">Пароль</string>
 	<string name="done">Готово</string>
+
+	<!-- диалог отсутствия подключения -->
+	<string name="conn_title">Нет Интернет Подключения!</string>
+	<string name="conn_message">Для полноценной игры, MultiCraft требует подключение к Интернету.\nВ противном случае вам будет недоступно Обновление игры и режим Мультиплеера!</string>
+	<string name="conn_mobile">3G/4G</string>
+	<string name="ignore">Игнорировать</string>
+
 </resources>

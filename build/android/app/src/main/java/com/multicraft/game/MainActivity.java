@@ -2,14 +2,17 @@
 MultiCraft
 Copyright (C) 2014-2021 MoNTE48, Maksim Gamarnik <MoNTE48@mail.ua>
 Copyright (C) 2014-2021 ubulem,  Bektur Mambetov <berkut87@gmail.com>
+
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation; either version 3.0 of the License, or
 (at your option) any later version.
+
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
+
 You should have received a copy of the GNU Lesser General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -26,6 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,12 +55,16 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import static android.content.DialogInterface.BUTTON_NEUTRAL;
+import static android.provider.Settings.ACTION_WIFI_SETTINGS;
+import static android.provider.Settings.ACTION_WIRELESS_SETTINGS;
 import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 import static com.multicraft.game.UnzipService.ACTION_FAILURE;
 import static com.multicraft.game.UnzipService.UNZIP_FAILURE;
 import static com.multicraft.game.UnzipService.UNZIP_SUCCESS;
 import static com.multicraft.game.helpers.Constants.FILES;
 import static com.multicraft.game.helpers.Constants.NO_SPACE_LEFT;
+import static com.multicraft.game.helpers.Constants.REQUEST_CONNECTION;
 import static com.multicraft.game.helpers.Constants.versionName;
 import static com.multicraft.game.helpers.PreferencesHelper.TAG_BUILD_NUMBER;
 import static com.multicraft.game.helpers.PreferencesHelper.TAG_LAUNCH_TIMES;
@@ -64,6 +72,8 @@ import static com.multicraft.game.helpers.Utilities.addShortcut;
 import static com.multicraft.game.helpers.Utilities.copyInputStreamToFile;
 import static com.multicraft.game.helpers.Utilities.deleteFiles;
 import static com.multicraft.game.helpers.Utilities.finishApp;
+import static com.multicraft.game.helpers.Utilities.getIcon;
+import static com.multicraft.game.helpers.Utilities.isConnected;
 import static com.multicraft.game.helpers.Utilities.makeFullScreen;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 	};
-	private Disposable cleanSub, copySub;
+	private Disposable cleanSub, copySub, connectionSub;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +138,16 @@ public class MainActivity extends AppCompatActivity {
 		super.onDestroy();
 		if (cleanSub != null) cleanSub.dispose();
 		if (copySub != null) copySub.dispose();
+		if (connectionSub != null) connectionSub.dispose();
 		if (myReceiver != null) unregisterReceiver(myReceiver);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == REQUEST_CONNECTION) {
+			checkAppVersion();
+		}
 	}
 
 	@Override
@@ -169,7 +188,46 @@ public class MainActivity extends AppCompatActivity {
 	private void lateInit() {
 		addLaunchTimes();
 		if (!pf.isCreateShortcut()) addShortcut(this);
-		checkAppVersion();
+		connectionSub = checkConnection();
+	}
+
+	// check connection available
+	private Disposable checkConnection() {
+		return Observable.fromCallable(() -> isConnected(this))
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(result -> {
+							if (result) checkAppVersion();
+							else showConnectionDialog();
+						},
+						throwable -> runOnUiThread(this::showConnectionDialog));
+	}
+
+	// connection dialog
+	private void showConnectionDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setIcon(getIcon(this))
+				.setTitle(R.string.conn_title)
+				.setMessage(R.string.conn_message)
+				.setPositiveButton(R.string.conn_wifi, (dialogInterface, i) -> startHandledActivity(new Intent(ACTION_WIFI_SETTINGS)))
+				.setNegativeButton(R.string.conn_mobile, (dialogInterface, i) -> startHandledActivity(new Intent(ACTION_WIRELESS_SETTINGS)))
+				.setNeutralButton(R.string.ignore, (dialogInterface, i) -> checkAppVersion())
+				.setCancelable(false);
+		final AlertDialog dialog = builder.create();
+		makeFullScreen(dialog.getWindow());
+		if (!isFinishing()) {
+			dialog.show();
+			Button button = dialog.getButton(BUTTON_NEUTRAL);
+			if (button != null) button.setTextColor(Color.RED);
+		}
+	}
+
+	private void startHandledActivity(Intent intent) {
+		try {
+			startActivityForResult(intent, REQUEST_CONNECTION);
+		} catch (Exception e) {
+			startNative();
+		}
 	}
 
 	private void startNative() {
