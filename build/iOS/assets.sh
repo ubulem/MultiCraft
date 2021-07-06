@@ -63,11 +63,3 @@ if [[ -z "$PASSWORD" ]]; then
 fi
 cd $DEST; zip -P $PASSWORD -1r $ZIPDEST -- *
 cd $FOLDER; rm -rf $DEST
-
-###########
-
-echo "Creating worlds.zip"
-ZIPDEST=$FOLDER/worlds.zip
-rm -f $ZIPDEST
-
-cd ../..; zip -r $ZIPDEST -- worlds

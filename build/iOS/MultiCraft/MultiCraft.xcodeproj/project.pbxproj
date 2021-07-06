@@ -235,7 +235,6 @@
 		F8E6C7D51DCA476800F64426 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7D41DCA476800F64426 /* libIrrlicht.a */; };
 		F8E6C7D71DCA477600F64426 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E6C7D61DCA477600F64426 /* libfreetype.a */; };
 		F8E6C7E11DCA4EB300F64426 /* assets.zip in Resources */ = {isa = PBXBuildFile; fileRef = F8E6C7E01DCA4EB300F64426 /* assets.zip */; };
-		F8E6C7E31DCA511700F64426 /* worlds.zip in Resources */ = {isa = PBXBuildFile; fileRef = F8E6C7E21DCA511700F64426 /* worlds.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -720,7 +719,6 @@
 		F8E6C7D41DCA476800F64426 /* libIrrlicht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIrrlicht.a; path = ../deps/irrlicht/libIrrlicht.a; sourceTree = "<group>"; };
 		F8E6C7D61DCA477600F64426 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../deps/freetype/lib/libfreetype.a; sourceTree = "<group>"; };
 		F8E6C7E01DCA4EB300F64426 /* assets.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = assets.zip; path = ../../assets.zip; sourceTree = "<group>"; };
-		F8E6C7E21DCA511700F64426 /* worlds.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = worlds.zip; path = ../../worlds.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -860,7 +858,6 @@
 				842A808A2339174B00A89418 /* ads.h */,
 				842A808B2339174C00A89418 /* ads.mm */,
 				F8E6C7E01DCA4EB300F64426 /* assets.zip */,
-				F8E6C7E21DCA511700F64426 /* worlds.zip */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1477,7 +1474,6 @@
 				849C4F86209656D3005EB041 /* ru.lproj in Resources */,
 				F8E6C4EC1DCA3B7900F64426 /* LaunchScreen.storyboard in Resources */,
 				F8E6C7E11DCA4EB300F64426 /* assets.zip in Resources */,
-				F8E6C7E31DCA511700F64426 /* worlds.zip in Resources */,
 				84B9C11824A4D82400016BCE /* ConsentAlertViewController.xib in Resources */,
 				84CD4A65248782720019B81D /* ProgressViewController.xib in Resources */,
 				84CD4A66248782720019B81D /* MessageViewController.xib in Resources */,

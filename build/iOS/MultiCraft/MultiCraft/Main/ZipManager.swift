@@ -9,7 +9,6 @@ private enum Constants {
 private struct Asset {
 	let name: String
 	let path: UnzipPath
-	let versioned: Bool
 
 	var destinationPath: String {
 		switch path {
@@ -61,8 +60,7 @@ final class VersionManager {
 }
 
 final class ZipManager: NSObject {
-	private var assets: [Asset] = [.init(name: "assets", path: .library, versioned: true),
-	                               .init(name: "worlds", path: .documents, versioned: false)]
+	private var assets: [Asset] = [.init(name: "assets", path: .library)]
 
 	@objc func runProcess(_ progress: @escaping (_ percent: Int) -> Void, _ errorBlock: @escaping (Error) -> Void) {
 		let versionRuntime = VersionManager.parseVersion()
@@ -70,10 +68,6 @@ final class ZipManager: NSObject {
 		for (index, asset) in assets.enumerated() {
 			let zippath = Bundle.main.path(forResource: asset.name, ofType: "zip") ?? ""
 			let versionDisk = VersionManager.readVersion(withPath: asset.destinationPath)
-
-			if !asset.versioned && versionDisk != 0 { // worlds
-				continue
-			}
 
 			#if !DEBUG
 			if versionDisk == versionRuntime {

@@ -66,10 +66,5 @@ else
 	echo "You forgot to clone with submodules!"
 fi
 
-echo "**** Creating worlds.zip"
-ZIPDEST=$FOLDER/worlds.zip
-rm -f $ZIPDEST
-zip -0qr $ZIPDEST -- worlds
-
 echo
 echo "*** All done! You can continue in Android Studio! ***"

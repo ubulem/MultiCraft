@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener,
 			"HU", "IE", "IT", "LV", "LT", "LU",
 			"MT", "NL", "PL", "PT", "RO", "SK",
 			"SI", "ES", "SE", "GB", "IS", "LI", "NO");
-	private static String FILES, WORLDS, GAMES;
+	private static String FILES, GAMES;
 	private final String versionName = BuildConfig.VERSION_NAME;
 	private String unzipLocation, appData;
 	private boolean consent;
@@ -179,11 +179,9 @@ public class MainActivity extends AppCompatActivity implements CallBackListener,
 			cachePath = unzipLocation + "cache" + File.separator;
 
 		FILES = cachePath + "Files.zip";
-		WORLDS = cachePath + "worlds.zip";
 		GAMES = cachePath + "games.zip";
 		zipLocations.put(FILES, appData);
 		zipLocations.put(GAMES, appData);
-		zipLocations.put(WORLDS, unzipLocation);
 	}
 
 	private void addLaunchTimes() {
@@ -283,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener,
 	}
 
 	private void runGame() {
-		deleteFiles(Arrays.asList(FILES, WORLDS, GAMES));
+		deleteFiles(Arrays.asList(FILES, GAMES));
 		pf.saveSettings(TAG_BUILD_NUMBER, versionName);
 		connectionSub = checkConnection();
 	}
@@ -372,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener,
 	private void startCopy(boolean isAll) {
 		String[] zips;
 		if (isAll)
-			zips = new String[]{FILES, WORLDS, GAMES};
+			zips = new String[]{FILES, GAMES};
 		else
 			zips = new String[]{FILES, GAMES};
 		copySub = Completable.fromAction(() -> copyAssets(zips))
