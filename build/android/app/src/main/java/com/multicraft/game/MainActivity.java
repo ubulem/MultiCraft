@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
 		try {
 			startActivityForResult(intent, REQUEST_CONNECTION);
 		} catch (Exception e) {
-			startNative();
+			checkAppVersion();
 		}
 	}
 
