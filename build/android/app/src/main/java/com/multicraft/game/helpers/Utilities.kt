@@ -32,7 +32,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
+import android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
@@ -47,7 +47,6 @@ import com.multicraft.game.R
 import com.multicraft.game.helpers.ApiLevelHelper.isKitKat
 import com.multicraft.game.helpers.ApiLevelHelper.isMarshmallow
 import com.multicraft.game.helpers.ApiLevelHelper.isOreo
-import com.multicraft.game.helpers.Constants.FILES
 import com.multicraft.game.helpers.PreferencesHelper.TAG_SHORTCUT_EXIST
 import java.io.File
 import java.io.InputStream
@@ -128,14 +127,6 @@ object Utilities {
 	}
 
 	@JvmStatic
-	fun getLocationByZip(context: Context, zipName: String?): String {
-		return when (zipName) {
-			FILES -> context.filesDir.toString()
-			else -> throw IllegalArgumentException("No such zip name")
-		}
-	}
-
-	@JvmStatic
 	@SuppressLint("UnspecifiedImmutableFlag")
 	fun finishApp(restart: Boolean, activity: Activity) {
 		if (restart) {
@@ -143,9 +134,9 @@ object Utilities {
 			val mPendingIntentId = 1337
 			val mgr = activity.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 			mgr.set(
-					AlarmManager.RTC, System.currentTimeMillis(), PendingIntent.getActivity(
+				AlarmManager.RTC, System.currentTimeMillis(), PendingIntent.getActivity(
 					activity, mPendingIntentId, intent, PendingIntent.FLAG_CANCEL_CURRENT
-			)
+				)
 			)
 		}
 		exitProcess(0)
@@ -162,7 +153,7 @@ object Utilities {
 		if (isMarshmallow) {
 			val activeNetwork = cm.activeNetwork ?: return false
 			val capabilities = cm.getNetworkCapabilities(activeNetwork) ?: return false
-			return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+			return capabilities.hasCapability(NET_CAPABILITY_VALIDATED)
 		} else @Suppress("DEPRECATION") {
 			val activeNetworkInfo = cm.activeNetworkInfo ?: return false
 			return activeNetworkInfo.isConnected
