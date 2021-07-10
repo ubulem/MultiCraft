@@ -20,6 +20,27 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 package com.multicraft.game;
 
+import static android.content.DialogInterface.BUTTON_NEUTRAL;
+import static android.provider.Settings.ACTION_WIFI_SETTINGS;
+import static android.provider.Settings.ACTION_WIRELESS_SETTINGS;
+import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+import static com.multicraft.game.UnzipService.ACTION_FAILURE;
+import static com.multicraft.game.UnzipService.UNZIP_FAILURE;
+import static com.multicraft.game.UnzipService.UNZIP_SUCCESS;
+import static com.multicraft.game.helpers.Constants.FILES;
+import static com.multicraft.game.helpers.Constants.NO_SPACE_LEFT;
+import static com.multicraft.game.helpers.Constants.REQUEST_CONNECTION;
+import static com.multicraft.game.helpers.Constants.versionName;
+import static com.multicraft.game.helpers.PreferencesHelper.TAG_BUILD_NUMBER;
+import static com.multicraft.game.helpers.PreferencesHelper.TAG_LAUNCH_TIMES;
+import static com.multicraft.game.helpers.Utilities.addShortcut;
+import static com.multicraft.game.helpers.Utilities.copyInputStreamToFile;
+import static com.multicraft.game.helpers.Utilities.deleteFiles;
+import static com.multicraft.game.helpers.Utilities.finishApp;
+import static com.multicraft.game.helpers.Utilities.getIcon;
+import static com.multicraft.game.helpers.Utilities.isConnected;
+import static com.multicraft.game.helpers.Utilities.makeFullScreen;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -55,32 +76,10 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import static android.content.DialogInterface.BUTTON_NEUTRAL;
-import static android.provider.Settings.ACTION_WIFI_SETTINGS;
-import static android.provider.Settings.ACTION_WIRELESS_SETTINGS;
-import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
-import static com.multicraft.game.UnzipService.ACTION_FAILURE;
-import static com.multicraft.game.UnzipService.UNZIP_FAILURE;
-import static com.multicraft.game.UnzipService.UNZIP_SUCCESS;
-import static com.multicraft.game.helpers.Constants.FILES;
-import static com.multicraft.game.helpers.Constants.NO_SPACE_LEFT;
-import static com.multicraft.game.helpers.Constants.REQUEST_CONNECTION;
-import static com.multicraft.game.helpers.Constants.versionName;
-import static com.multicraft.game.helpers.PreferencesHelper.TAG_BUILD_NUMBER;
-import static com.multicraft.game.helpers.PreferencesHelper.TAG_LAUNCH_TIMES;
-import static com.multicraft.game.helpers.Utilities.addShortcut;
-import static com.multicraft.game.helpers.Utilities.copyInputStreamToFile;
-import static com.multicraft.game.helpers.Utilities.deleteFiles;
-import static com.multicraft.game.helpers.Utilities.finishApp;
-import static com.multicraft.game.helpers.Utilities.getIcon;
-import static com.multicraft.game.helpers.Utilities.isConnected;
-import static com.multicraft.game.helpers.Utilities.makeFullScreen;
-
 public class MainActivity extends AppCompatActivity {
 	private ProgressBar mProgressBar, mProgressBarIndet;
 	private TextView mLoadingText;
 	private PreferencesHelper pf;
-	private File externalStorage, filesDir, cacheDir;
 	private final BroadcastReceiver myReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -103,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 	};
+	private File externalStorage, filesDir, cacheDir;
 	private Disposable cleanSub, copySub, connectionSub;
 
 	@Override

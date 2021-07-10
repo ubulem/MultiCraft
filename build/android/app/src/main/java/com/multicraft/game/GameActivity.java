@@ -20,6 +20,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 package com.multicraft.game;
 
+import static android.content.res.Configuration.KEYBOARD_QWERTY;
+import static android.text.InputType.TYPE_CLASS_TEXT;
+import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
+import static com.multicraft.game.helpers.Utilities.getTotalMem;
+import static com.multicraft.game.helpers.Utilities.makeFullScreen;
+
 import android.app.NativeActivity;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -35,13 +42,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import static android.content.res.Configuration.KEYBOARD_QWERTY;
-import static android.text.InputType.TYPE_CLASS_TEXT;
-import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
-import static com.multicraft.game.helpers.Utilities.getTotalMem;
-import static com.multicraft.game.helpers.Utilities.makeFullScreen;
 
 public class GameActivity extends NativeActivity {
 
