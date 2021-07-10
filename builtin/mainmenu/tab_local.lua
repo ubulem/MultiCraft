@@ -28,7 +28,7 @@ local default_worlds = {
 
 local function create_default_worlds()
 	local _, gameindex = gamemgr.find_by_gameid("default")
-	if gameindex == 0 then return end
+	if not gameindex or gameindex == 0 then return end
 
 	-- Preserve the old map seed and mapgen values
 	local old_map_seed = core.settings:get("fixed_map_seed")
