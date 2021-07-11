@@ -9,9 +9,8 @@ android {
 		applicationId 'com.multicraft.game'
 		minSdkVersion 19
 		targetSdkVersion 30
-		versionCode 150
-		versionName "1.15.6"
-		multiDexEnabled true
+		versionCode 170
+		versionName "1.16.0"
 	}
 
 	// load properties
@@ -65,13 +64,8 @@ dependencies {
 	/* Third-party libraries */
 	implementation 'androidx.appcompat:appcompat:1.3.0'
 	implementation 'androidx.appcompat:appcompat-resources:1.3.0'
-	implementation("com.google.android.material:material:1.4.0")
-	implementation 'androidx.multidex:multidex:2.0.1'
+	implementation 'com.google.android.material:material:1.4.0'
 	implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
 	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 	implementation 'net.lingala.zip4j:zip4j:2.9.0'
-
-	/* Analytics libraries */
-	//noinspection GradleDynamicVersion
-	//implementation 'com.bugsnag:bugsnag-android-core:5.+'
 }

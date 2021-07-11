@@ -44,7 +44,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class GameActivity extends NativeActivity {
-
 	static {
 		try {
 			System.loadLibrary("MultiCraft");

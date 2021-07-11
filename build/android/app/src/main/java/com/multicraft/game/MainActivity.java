@@ -301,11 +301,7 @@ public class MainActivity extends AppCompatActivity {
 	private void startUnzipService(List<String> file) {
 		Intent intent = new Intent(this, UnzipService.class);
 		intent.putStringArrayListExtra(UnzipService.EXTRA_KEY_IN_FILE, (ArrayList<String>) file);
-		try {
-			UnzipService.enqueueWork(this, intent);
-		} catch (IllegalArgumentException e) {
-			finish(); // OEM bug on Android 8.1. Can do nothing
-		}
+		UnzipService.enqueueWork(this, intent);
 	}
 
 	private void showRestartDialog(final String source) {
