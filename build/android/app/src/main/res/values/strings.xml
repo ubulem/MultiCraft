@@ -9,7 +9,8 @@
 	<string name="loadingp">Loading&#8230; %d%%</string>
 	<string name="notification_title">Loading MultiCraft</string>
 	<string name="notification_description">Less than 1 minute&#8230;</string>
-	<string name="restart">Unexpected issue, the game will be restarted automatically</string>
+	<string name="space_error">Bad disk space state</string>
+	<string name="restart">Unexpected error: \"%s\"\nThe game will be restarted automatically</string>
 	<string name="no_space">No space left for game files, please free space in the memory</string>
 	<string name="ok" translatable="false">OK</string>
 

@@ -35,6 +35,7 @@ import static com.multicraft.game.helpers.PreferencesHelper.TAG_BUILD_NUMBER;
 import static com.multicraft.game.helpers.PreferencesHelper.TAG_LAUNCH_TIMES;
 import static com.multicraft.game.helpers.Utilities.addShortcut;
 import static com.multicraft.game.helpers.Utilities.copyInputStreamToFile;
+import static com.multicraft.game.helpers.Utilities.createAndWriteToFile;
 import static com.multicraft.game.helpers.Utilities.deleteFiles;
 import static com.multicraft.game.helpers.Utilities.finishApp;
 import static com.multicraft.game.helpers.Utilities.getIcon;
@@ -53,7 +54,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,9 +92,7 @@ public class MainActivity extends AppCompatActivity {
 				deleteFiles(Collections.singletonList(FILES), getCacheDir());
 				if (progress == UNZIP_FAILURE) {
 					String msg = intent.getStringExtra(ACTION_FAILURE);
-					if (!msg.equals("Wrong password!"))
-						Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
-					showRestartDialog("");
+					showRestartDialog(msg);
 				} else if (progress == UNZIP_SUCCESS) {
 					pf.saveSettings(TAG_BUILD_NUMBER, versionName);
 					startNative();
@@ -110,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		getWindow().addFlags(FLAG_KEEP_SCREEN_ON);
 		try {
-			// we cannot set this in AppTheme due to RateMe shift,
-			// dialog shift doesn't work when `NoActionBar` is set
 			getSupportActionBar().hide();
 		} catch (Exception ignored) {
 		}
@@ -119,9 +115,25 @@ public class MainActivity extends AppCompatActivity {
 		mLoadingText = findViewById(R.id.tv_progress);
 		mProgressBar = findViewById(R.id.PB);
 		mProgressBarIndet = findViewById(R.id.PB_Indet);
-		filesDir = getFilesDir();
-		cacheDir = getCacheDir();
-		externalStorage = getExternalFilesDir(null);
+		boolean isException = false;
+		try {
+			filesDir = getFilesDir();
+			cacheDir = getCacheDir();
+			externalStorage = getExternalFilesDir(null);
+			if (filesDir == null || cacheDir == null || externalStorage == null)
+				throw new IOException(getString(R.string.space_error));
+			createAndWriteToFile(filesDir);
+		} catch (IOException e) {
+			isException = true;
+			String msg = getString(R.string.restart, e.getLocalizedMessage());
+			if (e.getMessage().contains(NO_SPACE_LEFT)) {
+				msg = NO_SPACE_LEFT;
+			}
+			showRestartDialog(msg);
+		}
+		if (isException) {
+			return;
+		}
 		pf = PreferencesHelper.getInstance(this);
 		IntentFilter filter = new IntentFilter(UnzipService.ACTION_UPDATE);
 		registerReceiver(myReceiver, filter);
@@ -290,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
 				if (e.getLocalizedMessage().contains(NO_SPACE_LEFT))
 					runOnUiThread(() -> showRestartDialog(NO_SPACE_LEFT));
 				else {
-					runOnUiThread(() -> showRestartDialog(""));
+					runOnUiThread(() -> showRestartDialog(e.getLocalizedMessage()));
 				}
 				return false;
 			}
@@ -306,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
 
 	private void showRestartDialog(final String source) {
 		boolean space = NO_SPACE_LEFT.equals(source);
-		String message = space ? getString(R.string.no_space) : getString(R.string.restart);
+		String message = space ? getString(R.string.no_space) : source;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(message)
 				.setPositiveButton(R.string.ok, (dialogInterface, i) -> finishApp(!space, this))

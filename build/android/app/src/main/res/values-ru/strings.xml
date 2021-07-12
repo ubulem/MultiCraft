@@ -7,7 +7,8 @@
 	<string name="loadingp">Загрузка&#8230; %d%%</string>
 	<string name="notification_title">Загрузка MultiCraft</string>
 	<string name="notification_description">Осталось меньше минуты&#8230;</string>
-	<string name="restart">Произошла ошибка, игра будет перезапущена автоматически</string>
+	<string name="space_error">Память устройства недоступна для записи</string>
+	<string name="restart">Произошла ошибка %s\nИгра будет перезапущена автоматически</string>
 	<string name="no_space">Недостаточно места для записи файлов игры, пожалуйста освободите место в памяти</string>
 
 	<string name="input_text">Введите Текст</string>

@@ -49,6 +49,7 @@ import com.multicraft.game.helpers.ApiLevelHelper.isMarshmallow
 import com.multicraft.game.helpers.ApiLevelHelper.isOreo
 import com.multicraft.game.helpers.PreferencesHelper.TAG_SHORTCUT_EXIST
 import java.io.File
+import java.io.IOException
 import java.io.InputStream
 import kotlin.math.roundToInt
 import kotlin.system.exitProcess
@@ -158,5 +159,14 @@ object Utilities {
 			val activeNetworkInfo = cm.activeNetworkInfo ?: return false
 			return activeNetworkInfo.isConnected
 		}
+	}
+
+	@JvmStatic
+	@Throws(IOException::class)
+	fun createAndWriteToFile(dir: File) {
+		val check = File(dir, "check.txt")
+		check.createNewFile()
+		check.writeText("Test content, will be deleted afterwards")
+		check.delete()
 	}
 }
