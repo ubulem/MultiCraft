@@ -27,11 +27,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.JobIntentService
 import com.multicraft.game.helpers.ApiLevelHelper.isOreo
-import com.multicraft.game.helpers.Constants.FILES
 import com.multicraft.game.helpers.Utilities.copyInputStreamToFile
 import net.lingala.zip4j.ZipFile
 import net.lingala.zip4j.io.inputstream.ZipInputStream
 import net.lingala.zip4j.model.LocalFileHeader
+import java.io.EOFException
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
@@ -42,7 +42,6 @@ class UnzipService : JobIntentService() {
 	private var mNotifyManager: NotificationManager? = null
 	private lateinit var failureMessage: String
 	private var isSuccess = true
-	private var unzipStart = 0L
 	override fun onHandleWork(intent: Intent) {
 		createNotification()
 		unzip(intent)
@@ -87,42 +86,45 @@ class UnzipService : JobIntentService() {
 
 	@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 	private fun unzip(intent: Intent?) {
-		unzipStart = System.currentTimeMillis()
-		val zips: ArrayList<String> =
-			intent?.getStringArrayListExtra(EXTRA_KEY_IN_FILE) ?: ArrayList(listOf(FILES))
-		val cache = cacheDir.toString()
-		var per = 0
-		val size = getSummarySize(zips, cache)
-		for (zip in zips) {
-			val zipFile = File(cache, zip)
-			var localFileHeader: LocalFileHeader?
-			try {
-				FileInputStream(zipFile).use { fileInputStream ->
-					ZipInputStream(
-						fileInputStream
-					).use { zipInputStream ->
-						val location = filesDir.toString()
-						while (zipInputStream.nextEntry.also { localFileHeader = it } != null) {
-							if (localFileHeader == null) continue
-							val fileName = localFileHeader!!.fileName
-							if (localFileHeader!!.isDirectory) {
-								++per
-								File(location, fileName).mkdirs()
-							} else {
-								val extractedFile = File(location, fileName)
-								extractedFile.copyInputStreamToFile(zipInputStream)
-								publishProgress(100 * ++per / size)
+		try {
+			val zips: ArrayList<String> =
+				intent?.getStringArrayListExtra(EXTRA_KEY_IN_FILE)
+					?: throw NullPointerException("No data received")
+			val cache = cacheDir.toString()
+			var per = 0
+			val size = getSummarySize(zips, cache)
+			for (zip in zips) {
+				val zipFile = File(cache, zip)
+				var localFileHeader: LocalFileHeader?
+				try {
+					FileInputStream(zipFile).use { fileInputStream ->
+						ZipInputStream(
+							fileInputStream
+						).use { zipInputStream ->
+							val location = filesDir.toString()
+							while (zipInputStream.nextEntry.also { localFileHeader = it } != null) {
+								if (localFileHeader == null) continue
+								val fileName = localFileHeader!!.fileName
+								if (localFileHeader!!.isDirectory) {
+									++per
+									File(location, fileName).mkdirs()
+								} else {
+									val extractedFile = File(location, fileName)
+									extractedFile.copyInputStreamToFile(zipInputStream)
+									publishProgress(100 * ++per / size)
+								}
 							}
 						}
 					}
+				} catch (e: EOFException) {
 				}
-			} catch (e: IOException) {
-				failureMessage = e.localizedMessage
-				isSuccess = false
-			} catch (e: NullPointerException) {
-				failureMessage = e.localizedMessage
-				isSuccess = false
 			}
+		} catch (e: IOException) {
+			failureMessage = e.localizedMessage
+			isSuccess = false
+		} catch (e: NullPointerException) {
+			failureMessage = e.localizedMessage
+			isSuccess = false
 		}
 	}
 
@@ -136,12 +138,8 @@ class UnzipService : JobIntentService() {
 	private fun getSummarySize(zips: List<String>, path: String): Int {
 		var size = 1
 		for (zip in zips) {
-			try {
-				val zipFile = ZipFile(File(path, zip))
-				size += zipFile.fileHeaders.size
-			} catch (e: IOException) {
-				e.printStackTrace()
-			}
+			val zipFile = ZipFile(File(path, zip))
+			size += zipFile.fileHeaders.size
 		}
 		return size
 	}
